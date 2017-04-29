@@ -1,0 +1,18 @@
+{
+  "name": "punksmurf-website-build",
+  "version": "1.0.0",
+  "description": "A simple Gulp pipeline to publish my website.",
+  "author": "Niels Keetlaer",
+  "license": "CC-BY-NC-SA-4.0",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-dom": "^0.9.17",
+    "gulp-file-include": "^1.1.0",
+    "gulp-front-matter": "^1.3.0",
+    "gulp-layout": "0.0.4",
+    "gulp-markdown": "^1.2.0",
+    "gulp-sass": "^3.1.0",
+    "handlebars": "^4.0.6"
+  }
+}
