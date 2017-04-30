@@ -8,7 +8,7 @@ You can find my website at [pnksmr.fr](https://pnksmr.fr).
 
 * Install Gulp if you haven't already done so
 * Run `npm update && npm install`
-* Add a `/src` folder with `template` and `content` folders
+* Add a `/src` folder with `template` and `content` folders  
   For an example see my [website's content repo](https://github.com/Punksmurf/website-build)
   * The `/src/template` should contain:
     * `index.html`, your default template
@@ -30,7 +30,7 @@ I opted for a default template name of `layout.html` and the [Handlebars](http:/
 I also use [FrontMatter](https://jekyllrb.com/docs/frontmatter/) to be able to add or modify template variables. This means you can make exceptions for the used template or engine by providing the `layout` (relative to the template directory) and `engine` variables. I also use the `title` variable to set the page title, and print a warning if it has not been set.
 
 A very basic `layout.html` to use (using Handlebars):
-```
+```html
 <html>
   <head>
     <title>{{title}}</title>
@@ -42,7 +42,7 @@ A very basic `layout.html` to use (using Handlebars):
 ```
 
 Using that with the following Markdown file:
-```
+```markdown
 ---
 layout: layout.html
 engine: handlebars
@@ -52,7 +52,7 @@ title: Hello world
 ```
 
 Would deliver the following html:
-```
+```html
 <html>
   <head>
     <title>Hello world</title>
@@ -63,13 +63,22 @@ Would deliver the following html:
 </html>
 ```
 
+You can of course use more variables besides `title` to further modify your template.
+
 ## Including files
 
 Thanks to [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include) you can include files using `@@include("./%include.md")` anywhere in the file. Files prefixed with `%` are not processed on their own and do not show up in `./pages` by themselves.
 
 ## Notes on markup
 
-* For my use, I wrap the content in an `<article>` tag. Any `<p>` in there with only images in it will get an `images` tag which is useful for the style I am using. If you do not want this remove the appropriate from the `content_markdown` task.
+* For my use, I wrap the content in an `<article>` tag. Any `<p>` in there with only images in it will get an `images` class which is useful for the style I am using. If you do not want this remove the appropriate from the `content_markdown` task.
+* A (rudimentary and inelegantly implemented) way to add footnotes is available. The idea is borrowed from [MultiMarkDown](https://github.com/fletcher/MultiMarkdown/wiki/MultiMarkdown-Syntax-Guide#footnotes). You can add a footnote as follows:
+```markdown
+Here is some text containing a footnote.[^samplefootnote]
+
+[^samplefootnote]: Here is the text of the footnote itself.
+```
+The reference will link to the footnote and the footnote will link back to the reference.
 
 ## Projects used
 
@@ -82,6 +91,7 @@ Thanks to [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include) 
 * [gulp-layout](https://github.com/macoshita/gulp-layout)
 * [gulp-file-include](https://github.com/coderhaoxin/gulp-file-include)
 * [gulp-dom](https://github.com/trygve-lie/gulp-dom)
+* [gulp-replace](https://github.com/lazd/gulp-replace)
 
 ## License
 

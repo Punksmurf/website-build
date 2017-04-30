@@ -6,6 +6,7 @@ var markdown = require('gulp-markdown');
 var layout = require('gulp-layout');
 var fileinclude = require('gulp-file-include');
 var dom  = require('gulp-dom');
+var replace = require('gulp-replace');
 
 gulp.task('clean', function() {
   return del(['./pages/**', '!./pages']);
@@ -21,6 +22,9 @@ gulp.task('content_markdown', function() {
     }))
     .pipe(frontMatter())
     .pipe(markdown())
+    // todo: find a nicer way to implement this and add the footnote text as title to the refering link
+    .pipe(replace(/\[\^(\w+)\]:/g, '<a name="footnote-$1" href="#footnote-referer-$1">$1</a>:')) // replace footnoe
+    .pipe(replace(/\[\^(\w+)\]/g, '<sup><a name="footnote-referer-$1" href="#footnote-$1">$1</a></sup>')) // replace link refering to footnote
     .pipe(layout(function(file) {
       var options = file.frontMatter;
       if (!options.layout) options.layout = 'layout.html';
