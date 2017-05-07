@@ -10,8 +10,6 @@ var replace = require('gulp-replace');
 
 gulp.task('clean', function() {
   return del(['./pages/**', '!./pages']);
-  return gulp.src('./pages', {read: false})
-      .pipe(clean());
 });
 
 gulp.task('content_markdown', function() {
